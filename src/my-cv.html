@@ -9,32 +9,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="shared-styles.html">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
-<dom-module id="my-view404">
+<link rel="import" href="header-cv.html">
+<link rel="import" href="content-cv.html">
+
+<dom-module id="my-cv">
   <template>
     <style>
       :host {
         display: block;
-
-        padding: 10px 20px;
       }
     </style>
 
-    Oops you hit a 404. <a href="[[rootPath]]">Head back to home.</a>
+    <iron-ajax
+      auto
+      handle-as="json"
+      url="../../data.json"
+      last-response="{{data}}">
+    </iron-ajax>
+
+    <header-cv data="{{data}}"></header-cv>
+
+    <content-cv data="{{data}}"></content-cv>
   </template>
 
   <script>
-    class MyView404 extends Polymer.Element {
-      static get is() { return 'my-view404'; }
-      static get properties() {
-        return {
-          // This shouldn't be neccessary, but the Analyzer isn't picking up
-          // Polymer.Element#rootPath
-          rootPath: String,
-        };
+    class MyCv extends Polymer.Element {
+
+      static get is() { return 'my-cv'; }
+
+      constructor() {
+        super();
       }
     }
 
-    window.customElements.define(MyView404.is, MyView404);
+    window.customElements.define(MyCv.is, MyCv);
   </script>
 </dom-module>

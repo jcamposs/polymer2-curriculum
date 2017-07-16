@@ -1,0 +1,174 @@
+{
+  "cv": {
+    "name": "Jorge",
+    "firstName": "Campos",
+    "lastName": "Serrano",
+    "imageUser": "images/img/profile.jpg",
+      "city": "Illescas - Toledo",
+      "contacts": {
+        "email":"jorgecamse@gmail.com",
+        "logo":"images/img/logos/email.png",
+        "text":"Send me an email to jorgecamse@gmail.com"
+      },
+      "ssnn": [
+        {
+          "contact":"Linkedin",
+          "url":"https://www.linkedin.com/in/jorge-campos-32646369/",
+          "logo":"images/img/logos/linkedin.png",
+          "text":"Visit my profile on Linkedin"
+        },
+        {
+          "contact":"Github",
+          "url":"https://github.com/jcamposs",
+          "logo":"images/img/logos/github.png",
+          "text":"Visit my projects on Github"
+        }
+      ],
+      "birthdate":
+        {
+          "day":"24",
+          "month":"Julio",
+          "year":"1990"
+        },
+      "professional": "Frontend Developer",
+      "technologies": [
+          {
+            "name":"JavaScript",
+            "image":"images/img/js.jpg"
+          },
+          {
+            "name":"HTML5",
+            "image":"images/img/html5.jpg"
+          },
+          {
+            "name":"CSS3",
+            "image":"images/img/css3.jpg"
+          },
+          {
+            "name":"jQuery",
+            "image":"images/img/jquery.jpg"
+          },
+          {
+            "name":"AngularJS",
+            "image":"images/img/angularjs.jpg"
+          },
+          {
+            "name":"Polymer",
+            "image":"images/img/polymer.jpg"
+          },
+          {
+            "name":"MeteorJS",
+            "image":"images/img/meteor.png"
+          },
+          {
+            "name":"Bootstrap",
+            "image":"images/img/bootstrap.jpg"
+          },
+          {
+            "name":"SaSS",
+            "image":"images/img/sass.jpg"
+          },
+          {
+            "name":"Npm",
+            "image":"images/img/npm.png"
+          },
+          {
+            "name":"Bower",
+            "image":"images/img/bower.jpg"
+          },
+          {
+            "name":"Gulp",
+            "image":"images/img/gulp.jpg"
+          },
+          {
+            "name":"Jasmine",
+            "image":"images/img/jasmine.png"
+          },
+          {
+            "name":"Python",
+            "image":"images/img/python.png"
+          },
+          {
+            "name":"Ruby on Rails",
+            "image":"images/img/ruby.png"
+          }
+      ],
+      "languages": [
+        {
+          "language": "",
+          "level": ""
+        }
+      ],
+      "experience": [
+        {
+          "company": "BlueBottleBiz",
+          "logo":"images/img/logos/bbb.jpg",
+          "position": "Frontend Developer",
+          "date": [
+            {
+              "start": "May 2017",
+              "end": "Currently"
+            }
+          ],
+          "level": "",
+          "functions": []
+        },
+        {
+          "company": "S|ngular",
+          "logo":"images/img/logos/sngular.png",
+          "position": "Junior Frontend developer",
+          "date": [
+            {
+              "start": "September 2015",
+              "end": "October 2016"
+            }
+          ],
+          "level": "",
+          "functions": [
+            "Development and layout of components using HTML5, CSS3, jQuery and JavaScript with responsive and mobile-first design. Use Jade, Sass and automated development environment with Gulp to streamline work. Version control of files using Git.",
+            "Development of internal applications using Polymer and AngularJS",
+            "Working in development environment with agile methodologies (SCRUM)"
+          ]
+        },
+        {
+          "company": "Universidad Rey Juan Carlos",
+          "logo":"images/img/logos/urjc.png",
+          "position": "Research Scholar",
+          "date": [
+            {
+              "start": "November 2012",
+              "end": "December 2013"
+            }
+          ],
+          "level": "",
+          "functions": []
+        }
+      ],
+      "training": [
+          {
+            "center": "Universidad Rey Juan Carlos",
+            "logo":"images/img/logos/urjc.png",
+            "title": "Master in Telecommunication Engineering",
+            "date": [
+              {
+                "start": "2014",
+                "end": "2017"
+              }
+            ],
+            "average": ""
+          },
+          {
+            "center": "Universidad Rey Juan Carlos",
+            "logo":"images/img/logos/urjc.png",
+            "title": "Degree in Telecommunication Technology Engineering",
+            "date": [
+              {
+                "start": "2019",
+                "end": "2013"
+              }
+            ],
+            "average": ""
+          }
+      ]
+  }
+}
