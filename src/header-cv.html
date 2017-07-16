@@ -1,0 +1,133 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="header-cv">
+  <template>
+    <style>
+      :host {
+        --header-cv-background-color: #4285F4;
+        --header-cv-title-color: #fff;
+        --header-cv-info-color: #fff;
+      }
+      header {
+        background-color: var(--header-cv-background-color, blue);
+        padding: 10px 20px;
+      }
+      h1, ul {
+        display: inline-block;
+        color: var(--header-cv-title-color, white);
+        font-family: 'Source Sans Pro', sans-serif;
+        letter-spacing: 1.5px;
+      }
+      ul {
+        color: var(--header-cv-info-color, white);
+        list-style: none;
+        padding-left: 0;
+      }
+      .image-photo {
+        transform: translateY(15%);
+      }
+      .flex-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: flex-start;
+      }
+      .flex-item:nth-child(1) {
+        order: 0;
+        flex: 1 1 auto;
+        align-self: auto;
+      }
+      .flex-item:nth-child(2) {
+        order: 0;
+        flex: 2 1 auto;
+        align-self: auto;
+      }
+      .flex-item:nth-child(3) {
+        order: 0;
+        flex: 0 1 auto;
+        align-self: auto;
+      }
+      iron-image {
+        border-radius: 50%;
+      }
+      .pointer {
+        cursor: pointer;
+      }
+      @media(max-width: 768px) {
+        .flex-container {
+          display: block;
+        }
+        .flex-item:nth-child(1),
+        .flex-item:nth-child(3) {
+          text-align: center;
+        }
+        .flex-item:nth-child(2) {
+          display: none;
+        }
+        .image-photo {
+          transform: initial;
+        }
+        h1 {
+          font-size: 22px;
+        }
+      }
+    </style>
+
+    <header id="header" class="flex-container">
+      <div class="container flex-item">
+        <h1>
+          {{data.cv.name}} {{data.cv.firstName}} {{data.cv.lastName}}
+        </h1>
+      </div>
+
+      <div class="container flex-item">
+        <ul>
+          <li>{{data.cv.professional}}</li>
+          <li>{{data.cv.city}}</li>
+          <li on-tap="calculateAge" class="pointer">{{data.cv.birthdate.day}} {{data.cv.birthdate.month}} {{data.cv.birthdate.year}} | {{age}}</li>
+        </ul>
+      </div>
+
+      <div class="container flex-item image-photo">
+        <iron-image src="{{data.cv.imageUser}}" style="width:80px; height:80px;" sizing="cover"></iron-image>
+      </div>
+    </header>
+  </template>
+
+  <script>
+    class HeaderCv extends Polymer.Element {
+      static get is() { return 'header-cv'; }
+
+      static get properties() {
+        return {
+          data: {
+            type: Object
+          }
+        }
+      }
+
+      calculateAge() {
+       let data = this.data;
+       let date = new Date();
+       let year = date.getFullYear();
+       this.age = year - data.cv.birthdate.year + " years old";
+     }
+    }
+
+    window.customElements.define(HeaderCv.is, HeaderCv);
+  </script>
+</dom-module>
