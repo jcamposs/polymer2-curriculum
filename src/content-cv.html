@@ -1,0 +1,266 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="../../bower_components/iron-swipeable-container/iron-swipeable-container.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="content-cv">
+  <template>
+    <style>
+      :host {
+        display: block;
+        --data-cv-experience-position-color: #4285F4;
+      };
+      p, ul, .technologies {
+        font-family: 'Source Sans Pro', sans-serif;
+      }
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+      a {
+        color: black;
+        text-decoration: none;
+      }
+      a:hover {
+        color: #E64A19;
+      }
+      .flex-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: flex-start;
+      }
+      .flex-item {
+        margin: 0 10px;
+      }
+      .flex-item:nth-child(1) {
+        order: 0;
+        flex: 1 1 auto;
+        align-self: auto;
+      }
+      .flex-item:nth-child(2) {
+        order: 0;
+        flex: 1 1 auto;
+        align-self: auto;
+      }
+      .border-items {
+        margin: 10px 0;
+      }
+      paper-card {
+        border-radius: 5px;
+        margin: 5px 0;
+        padding: 10px;
+        width: 100%;
+      }
+      .paper-card-close {
+        height: 130px;
+        overflow: hidden;
+      }
+      .card-content {
+        margin-top: 0;
+      }
+      .average {
+        font-size: 12px;
+      }
+      .date {
+        font-size: 14px;
+      }
+      li img {
+        height: 75px;
+        max-width: 165px;
+      }
+      .technologies-container {
+        display: flex;
+        text-align: center;
+      }
+      .technologies {
+        flex: 1;
+        margin: 15px 10px;
+        width: auto;
+      }
+      .technologies ul li {
+        cursor: pointer;
+        display: inline-block;
+        margin: 5px 15px;
+      }
+      .position {
+        color: var(--data-cv-experience-position-color, blue);
+      }
+      google-map {
+        height: 500px;
+        width: 100%;
+      }
+      .logo {
+        max-width: 100%;
+        width: 100px;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+      }
+      .training-logo {
+        height: 50px;
+        width: auto;
+      }
+      .contact {
+        bottom: 15px;
+        display: inline-block;
+        position: fixed;
+        right: 20px;
+        z-index: 99;
+      }
+      .contact paper-button {
+        background-color: #E64A19;
+        border: 1px solid #FFCCBC;
+        color: #FFCCBC;
+        font-family:  'Source Sans Pro', sans-serif;
+        letter-spacing: 1px;
+      }
+      paper-dialog {
+        padding: 50px;
+      }
+      paper-dialog h2 {
+        text-align: center;
+      }
+      .logos-ssnn {
+        display: inline-block;
+        height: initial !important;
+        transform: translateY(40%);
+        margin-right: 15px;
+        max-width: initial !important;
+        width: 30px;
+      }
+      .open-functions-icon {
+        color: #4285F4;
+      }
+      @media(min-width: 768px) {
+          .flex-item {
+            width: 50%;
+          }
+      }
+      @media(max-width: 768px) {
+          .flex-container {
+            flex-direction: column;
+          }
+      }
+    </style>
+
+    <div class="contact">
+      <paper-button raised onclick="animated.open()">
+        <strong>Contact</strong>
+      </paper-button>
+    </div>
+
+    <paper-dialog id="animated" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+      <h2>Contact</h2>
+      <ul>
+        <template is="dom-repeat" items={{data.cv.ssnn}} as="social">
+          <li>
+            <img class="logos-ssnn" src="{{social.logo}}" alt="{{social.contact}}">
+            <a href="{{social.url}}" target="_blank"> {{social.text}} </a>
+          </li>
+        </template>
+        <li>
+          <img class="logos-ssnn" src="{{data.cv.contacts.logo}}" alt="">
+          <a href="mailto:{{data.cv.contacts.email}}"> {{data.cv.contacts.text}} </a>
+        </li>
+      </ul>
+    </paper-dialog>
+
+    <div class="flex-container">
+      <div class="flex-item">
+        <h3>Work experience</h3>
+        <ul class="card-content">
+          <template is="dom-repeat" items="{{data.cv.experience}}" as="experience">
+            <paper-card heading="{{experience.company}}" class="paper-card-close">
+              <img src="{{experience.logo}}" class="logo training-logo"></img>
+              <ul>
+                <li class="position"> {{experience.position}} </li>
+                <li> {{experience.level}} </li>
+                <template is="dom-repeat" items="{{experience.date}}" as ="date">
+                  <li class="date">{{date.start}} - {{date.end}}</li>
+                </template>
+                <li>
+                <li>Functions:
+                  <template is="dom-if" if="{{experience.functions}} > 0">
+                    <span class="open-functions-icon" on-tap=""><i>[+]</i></span>
+                  </template>
+                </li>
+                  <ol>
+                    <template is="dom-repeat" items="{{experience.functions}}" as="function">
+                      <li>{{function}}</li>
+                    </template>
+                  </ol>
+                </li>
+              </ul>
+            </paper-card>
+          </template>
+        </ul>
+      </div>
+      <div class="flex-item">
+        <ul class="card-content">
+          <h3>Education</h3>
+          <template is="dom-repeat" items="{{data.cv.training}}" as="training">
+            <paper-card heading="{{training.center}}">
+              <img class="logo training-logo" src="{{training.logo}}"></img>
+              <li>
+                <ul>
+                  <li>{{training.title}}</li>
+                  <template is="dom-repeat" items="{{training.date}}" as="date">
+                    <li class="date">{{date.start}} - {{date.end}}
+                  </template>
+                  <li class="average">{{training.average}}</li>
+                </ul>
+              </li>
+            </paper-card>
+          </template>
+        </ul>
+      </div>
+    </div>
+
+    <div class="technologies-container">
+      <paper-card class="technologies" heading="Skills">
+        <ul>
+          <template is="dom-repeat" items="{{data.cv.technologies}}" as="technology" indexAs="{{index}}">
+              <li>
+                <paper-tooltip>{{technology.name}}</paper-tooltip>
+                <img src="{{technology.image}}"/>
+              </li>
+          </template>
+        </ul>
+      </paper-card>
+    </div>
+  </template>
+
+  <script>
+    class ContentCv extends Polymer.Element {
+      static get is() { return 'content-cv'; }
+
+      static get properties() {
+        return {
+          data: {
+            type: Object
+          }
+        }
+      }
+    }
+
+    window.customElements.define(ContentCv.is, ContentCv);
+  </script>
+</dom-module>
